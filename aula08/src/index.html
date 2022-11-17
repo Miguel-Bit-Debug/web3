@@ -9,9 +9,37 @@
 </head>
 <body>
     <button id="criar">Criar um novo contrato</button>
+    <button id="nome">Pegar Nome</button>
+    <button id="muda">Mudar Nome</button>
 </body>
     <script>
 
+        async function pegarNome() {
+            const web3 = new Web3('HTTP://127.0.0.1:7545');
+
+            let transaction = {
+                to: '0x74a35fE6655741dDf109cc94962f54cE4bFC911D',
+                data: '2deb124b'
+            }
+
+            let receipt = await web3.eth.call(transaction);
+            console.log(receipt)
+        }
+
+        async function mudaNome() {
+            const web3 = new Web3('HTTP://127.0.0.1:7545');
+
+            let transaction = {
+                from: '0x74a35fE6655741dDf109cc94962f54cE4bFC911D',
+                to: '0x74a35fE6655741dDf109cc94962f54cE4bFC911D',
+                data: '2deb124b',
+                gas: '0x64194'
+            }
+            let receipt = await web3.eth.call(transaction);
+            console.log(receipt)
+
+
+        }
         
         async function criar() {
             const web3 = new Web3('HTTP://127.0.0.1:7545');
@@ -27,5 +55,8 @@
         }
 
         document.getElementById('criar').addEventListener('click', criar);
+        document.getElementById('nome').addEventListener('click', pegarNome);
+        document.getElementById('muda').addEventListener('click', mudaNome);
+    </script>
     </script>
 </html>
